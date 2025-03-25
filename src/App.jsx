@@ -1,65 +1,78 @@
-import QRCode from "react-qr-code";
-import { Card } from "./components/ui/card";
-import { Button } from "./components/ui/button";
-import { Mail, Phone, Linkedin, Globe, Instagram, Calendar, Facebook } from "lucide-react";
+import agent from './agent.json';
+import QRCode from 'react-qr-code';
+import { Mail, Phone, Linkedin, Globe, Instagram, Calendar, Facebook, Moon, Sun } from 'lucide-react';
+import './index.css';
+import { useEffect, useState } from 'react';
 
 export default function App() {
+  const [darkMode, setDarkMode] = useState(() => {
+    return localStorage.getItem('theme') === 'dark';
+  });
+
+  useEffect(() => {
+    document.documentElement.classList.toggle('dark', darkMode);
+    localStorage.setItem('theme', darkMode ? 'dark' : 'light');
+  }, [darkMode]);
+
   return (
-    <div className="min-h-screen bg-gray-100 flex items-center justify-center p-4">
-      <Card className="w-full max-w-sm sm:max-w-md p-6 rounded-2xl shadow-xl bg-white">
-        <div className="flex flex-col items-center">
-          <img
-            src="https://i.imgur.com/l3sa4rL.jpg"
-            alt="Profile"
-            className="w-28 h-28 rounded-full object-cover border-4 border-blue-500"
-          />
-          <h1 className="text-2xl font-bold mt-4">Neel Patel</h1>
-          <p className="text-gray-600">Real Estate Broker | Cloud Team Realty</p>
+    <div className="min-h-screen bg-gray-100 dark:bg-gray-900 flex items-center justify-center p-4">
+      <div className="absolute top-4 right-4">
+        <button
+          onClick={() => setDarkMode(!darkMode)}
+          className="p-2 rounded-full bg-white dark:bg-gray-700 shadow-md"
+          aria-label="Toggle Dark Mode"
+        >
+          {darkMode ? <Sun className="text-yellow-400 w-5 h-5" /> : <Moon className="text-gray-800 w-5 h-5" />}
+        </button>
+      </div>
 
-          <div className="mt-6 w-full flex flex-col space-y-3 sm:space-y-2">
-            <a href="mailto:neel@cloudteamrealty.com" className="w-full">
-              <Button variant="outline" className="w-full">
-                <Mail className="mr-2 h-4 w-4" /> Email Me: neel@cloudteamrealty.com
-              </Button>
-            </a>
-            <a href="tel:3466334100" className="w-full">
-              <Button variant="outline" className="w-full">
-                <Phone className="mr-2 h-4 w-4" /> Call Me: (346) 633-4100
-              </Button>
-            </a>
-          </div>
+      <div className="w-full max-w-md bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6 text-center">
+        <img
+          src="/cloud-team-logo.png"
+          alt="Cloud Team Realty"
+          className="w-32 mx-auto mb-4 animate-fade-in"
+        />
+        <img
+          src="/profile.jpg"
+          alt="Profile"
+          className="w-28 h-28 rounded-full object-cover border-4 border-blue-500 mx-auto"
+        />
+        <h1 className="text-2xl font-bold mt-4 text-gray-900 dark:text-white">{agent.name}</h1>
+        <p className="text-gray-600 dark:text-gray-300">{agent.title}</p>
 
-          <div className="mt-4 flex flex-wrap justify-center gap-4">
-            <a href="https://www.linkedin.com/in/neel-patel-3b4a7885/" target="_blank" rel="noreferrer">
-              <Linkedin className="text-blue-600 w-6 h-6" />
-            </a>
-            <a href="https://cloudteamtx.com" target="_blank" rel="noreferrer">
-              <Globe className="text-gray-800 w-6 h-6" />
-            </a>
-            <a href="https://www.instagram.com/1.neel.patel/" target="_blank" rel="noreferrer">
-              <Instagram className="text-pink-500 w-6 h-6" />
-            </a>
-            <a href="https://outlook.office.com/bookwithme/user/eb049d4aba944ae6ab86dd29be7a5dd2%40cloudteamtx.com/meetingtype/VictKiwao0a4iP6HfLGOxQ2?anonymous=" target="_blank" rel="noreferrer">
-              <Calendar className="text-green-600 w-6 h-6" />
-            </a>
-            <a href="https://www.facebook.com/neel.patel.56211497" target="_blank" rel="noreferrer">
-              <Facebook className="text-blue-800 w-6 h-6" />
-            </a>
-          </div>
-
-          <a
-            href="/neel-patel.vcf"
-            download
-            className="mt-4 inline-block text-blue-600 underline"
-          >
-            Save to Contacts
+        <div className="mt-6 space-y-3">
+          <a href={`mailto:${agent.email}`} className="block w-full">
+            <div className="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-white p-3 rounded-lg flex items-center justify-center gap-2">
+              <Mail className="w-4 h-4" /> {agent.email}
+            </div>
           </a>
-
-          <div className="mt-6">
-            <QRCode value="https://digital-card-jvcw.vercel.app" size={128} />
-          </div>
+          <a href={`tel:${agent.phone}`} className="block w-full">
+            <div className="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-white p-3 rounded-lg flex items-center justify-center gap-2">
+              <Phone className="w-4 h-4" /> Call Me: ({agent.phone.slice(0, 3)}) {agent.phone.slice(3, 6)}-{agent.phone.slice(6)}
+            </div>
+          </a>
         </div>
-      </Card>
+
+        <div className="mt-6 flex justify-center gap-4">
+          <a href={agent.linkedin} target="_blank" rel="noreferrer"><Linkedin className="w-6 h-6 text-blue-600" /></a>
+          <a href={agent.website} target="_blank" rel="noreferrer"><Globe className="w-6 h-6 text-gray-800 dark:text-white" /></a>
+          <a href={agent.instagram} target="_blank" rel="noreferrer"><Instagram className="w-6 h-6 text-pink-500" /></a>
+          <a href={agent.calendar} target="_blank" rel="noreferrer"><Calendar className="w-6 h-6 text-green-600" /></a>
+          <a href={agent.facebook} target="_blank" rel="noreferrer"><Facebook className="w-6 h-6 text-blue-800" /></a>
+        </div>
+
+        <a
+          href="/agent.vcf"
+          download
+          className="mt-6 inline-block text-blue-600 dark:text-blue-400 underline"
+        >
+          Save to Contacts
+        </a>
+
+        <div className="mt-6 flex justify-center">
+          <QRCode value={agent.qr} size={128} />
+        </div>
+      </div>
     </div>
   );
 }
