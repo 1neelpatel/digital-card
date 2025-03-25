@@ -79,13 +79,13 @@ export default function App() {
           </div>
         )}
 
-        <a
-          href="/agent.vcf"
-          download
-          className="mt-6 inline-block text-blue-600 dark:text-blue-400 underline"
-        >
-          Save to Contacts
-        </a>
+<a
+  href="/neel-patel.vcf"
+  download="neel-patel.vcf"
+  className="mt-6 inline-block text-blue-600 dark:text-blue-400 underline"
+>
+  Save to Contacts
+</a>
 
         <div className="mt-6 flex justify-center">
           <QRCode value={agent.qr} size={128} />
