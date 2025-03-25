@@ -1,0 +1,11 @@
+BEGIN:VCARD
+VERSION:3.0
+N:Patel;Neel;;;
+FN:Neel Patel
+ORG:Cloud Team Realty
+TITLE:Real Estate Broker
+TEL;TYPE=WORK,VOICE:(346) 633-4100
+EMAIL;TYPE=PREF,INTERNET:neel@cloudteamrealty.com
+URL:https://cloudteamtx.com
+ADR:;;Houston, TX;;;
+END:VCARD
