@@ -61,6 +61,24 @@ export default function App() {
           <a href={agent.facebook} target="_blank" rel="noreferrer"><Facebook className="w-6 h-6 text-blue-800" /></a>
         </div>
 
+        {agent.customLinks && agent.customLinks.length > 0 && (
+          <div className="mt-6 space-y-2">
+            {agent.customLinks.map((link, index) => (
+              <a
+                key={index}
+                href={link.url}
+                target="_blank"
+                rel="noreferrer"
+                className="block w-full"
+              >
+                <div className="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-300 p-3 rounded-lg font-medium">
+                  {link.label}
+                </div>
+              </a>
+            ))}
+          </div>
+        )}
+
         <a
           href="/agent.vcf"
           download
