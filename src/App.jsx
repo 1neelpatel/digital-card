@@ -22,9 +22,9 @@ export default function App() {
                 <Mail className="mr-2 h-4 w-4" /> Email Me: neel@cloudteamrealty.com
               </Button>
             </a>
-            <a href="tel:3466334190" className="w-full">
+            <a href="tel:3466334100" className="w-full">
               <Button variant="outline" className="w-full">
-                <Phone className="mr-2 h-4 w-4" /> Call Me: (346) 633-4190
+                <Phone className="mr-2 h-4 w-4" /> Call Me: (346) 633-4100
               </Button>
             </a>
           </div>
