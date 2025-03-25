@@ -8,6 +8,12 @@
     "instagram": "https://www.instagram.com/1.neel.patel/",
     "calendar": "https://outlook.office.com/bookwithme/...",
     "facebook": "https://facebook.com/neel.patel.56211497",
-    "qr": "https://digital-card-jvcw.vercel.app"
+    "qr": "https://digital-card-jvcw.vercel.app",
+    "customLinks": [
+      {
+        "label": "View My Listings",
+        "url": "https://www.har.com/neel-patel/agent_ndpatel"
+      }
+      
+    ]
   }
-  
