@@ -56,7 +56,7 @@ export default function App() {
           </a>
 
           <div className="mt-6">
-            <QRCode value="https://cloudteamtx.com" size={128} />
+            <QRCode value="https://digital-card-jvcw.vercel.app" size={128} />
           </div>
         </div>
       </Card>
